@@ -51,7 +51,7 @@ class SettingsController extends Controller
             // Retrieve settings from the database
             $settings = Settings::getAllSettings();
             $settings = array_merge([
-                'system_title' => config('app.name', 'UPITDC - Inventory System'),
+                'system_title' => config('app.name', 'Medventory: Medical Equipment Inventory System'),
                 'default_return_period' => 30,
                 'allow_duplicate_pr' => 0,
             ], $settings);

@@ -433,7 +433,7 @@
                                 </label>
                                 <div class="relative group">
                                     <input type="text" name="system_title" id="system_title"
-                                        value="{{ old('system_title', $settings['system_title'] ?? 'UPITDC - Inventory System') }}"
+                                        value="{{ old('system_title', $settings['system_title'] ?? 'Medventory: Medical Equipment Inventory System') }}"
                                         readonly
                                         class="w-full px-3 py-3 border border-[#ffcc34] rounded-lg bg-gradient-to-r from-gray-50 to-gray-100 text-xs focus:ring-2 focus:ring-[#00553d] focus:border-transparent cursor-not-allowed transition-all duration-300 group-hover:shadow-md @error('system_title') border-red-500 @enderror">
                                     <div

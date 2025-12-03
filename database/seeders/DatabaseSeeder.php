@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
       Settings::create([
             'key' => 'system_title',
-            'value' => 'UPITDC - Inventory System',
+            'value' => 'Medventory: Medical Equipment Inventory System',
         ]);
     }
 }

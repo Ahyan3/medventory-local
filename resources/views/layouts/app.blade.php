@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ \App\Models\Settings::where('key', 'system_title')->value('value') ?? 'UPITDC - Inventory System' }}</title>
+    <title>{{ \App\Models\Settings::where('key', 'system_title')->value('value') ?? 'Medventory: Medical Equipment Inventory System' }}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -15,9 +15,9 @@
     <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50 border-b-2 border-[#ffcc34]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <img src="{{ asset('images/ITDC.png') }}" alt="Company Logo" class="h-8" onerror="this.src='/images/ITDC.png'">
+                <img src="{{ asset('images/logo.png') }}" alt="Medventory Logo" class="h-8" onerror="this.src='/images/logo.png'">
                 <h1 class="text-base font-semibold text-gray-900">
-                    {{ \App\Models\Settings::where('key', 'system_title')->value('value') ?? 'UPITDC - Inventory System' }}
+                    {{ \App\Models\Settings::where('key', 'system_title')->value('value') ?? 'Medventory: Medical Equipment Inventory System' }}
                 </h1>
             </div>
             <div class="flex items-center space-x-4">

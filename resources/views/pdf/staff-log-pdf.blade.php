@@ -73,7 +73,7 @@
 </head>
 <body>
 
-    <h1>University of the Philippines ITDC</h1>
+    <h1>Medventory: Medical Equipment Inventory System</h1>
     <h2>{{ $title }}</h2>
     <p>Generated on: {{ $exportDate->format('F d, Y g:i A') }}</p>
 
@@ -123,7 +123,7 @@
 
     <!-- Footer -->
     <div class="footer">
-        © {{ date('Y') }} University of the Philippines Diliman Information Technology Development Center<br>
+        © {{ date('Y') }} Medventory: Medical Equipment Inventory System<br>
     </div>
 
 </body>
