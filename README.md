@@ -38,7 +38,8 @@ With Medventory, hospitals can ensure:
 - Department & Staff Management  
 - Activity Logs & Export Tools  
 - Dashboard with Key Statistics  
-- TailwindCSS-Driven UI  
+- TailwindCSS-Driven UI
+- PDF and CVS Export
 
 ---
 
