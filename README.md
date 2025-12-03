@@ -1,4 +1,4 @@
-# UP-ITDC Inventory Management System
+# 🏥 Medventory – Medical Equipment Inventory System
 
 <p align="center">
   <a href="https://laravel.com" target="_blank">
@@ -7,197 +7,147 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-  <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="#"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+  <a href="#"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+  <a href="#"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+  <a href="#"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
 ---
 
-## 📖 About the Project
+## 📖 About Medventory
 
-The **UP-ITDC Inventory Management System** is a Laravel 12-based web application designed to manage staff, departments, and equipment efficiently.
-It provides features such as:
+Medventory is a hospital-based inventory management system designed to efficiently track and manage medical equipment and pharmacy-issued items.  
+It streamlines the entire lifecycle of equipment—from issuance by doctors, active usage, maintenance, and damage reporting, to pharmacy monitoring and full administrative oversight.
 
-* Staff & Department Management
-* Equipment Issuance, Return, and Status Tracking
-* History Logs with Filtering & Export
-* Dashboard with Key Statistics
-* TailwindCSS-powered Frontend
+With Medventory, hospitals can ensure:
 
----
-
-## 📦 Prerequisites
-
-Make sure to install these tools first:
-
-* **PHP** ≥ 8.2 → [Download](https://windows.php.net/download/)
-* **Composer** → [Download](https://getcomposer.org/Composer-Setup.exe)
-* **MySQL** (XAMPP or standalone) → [XAMPP](https://www.apachefriends.org/)
-* **Node.js (LTS)** → [Download](https://nodejs.org/)
-* **Git** (optional) → [Download](https://git-scm.com/download/win)
+- ✔ Accurate equipment tracking  
+- ✔ Reduced losses and misplacements  
+- ✔ Improved accountability  
+- ✔ Smoother workflow across departments  
 
 ---
 
-## ⚙️ Installation & Setup
+## 🚀 Features
 
-### 1. Clone the Repository
+- Medical Equipment Management  
+- Issuance & Return Tracking  
+- Damage & Maintenance Reporting  
+- Pharmacy Item Monitoring  
+- Department & Staff Management  
+- Activity Logs & Export Tools  
+- Dashboard with Key Statistics  
+- TailwindCSS-Driven UI  
 
-```bash
-git clone https://github.com/your-username/inventory-management-system.git
-cd inventory-management-system
-```
+---
 
-### 2. Install PHP Dependencies
+📦 Prerequisites
 
-```bash
+Install the following first:
+
+PHP ≥ 8.2 → https://windows.php.net/download/
+
+Composer → https://getcomposer.org/Composer-Setup.exe
+
+MySQL (XAMPP or standalone) → https://www.apachefriends.org/
+
+Node.js LTS → https://nodejs.org/
+
+Git → https://git-scm.com/download/win
+
+⚙️ Installation & Setup
+1️⃣ Clone the Repository
+git clone https://github.com/your-username/medventory.git
+cd medventory
+
+2️⃣ Install Backend Dependencies
 composer install
-```
 
-### 3. Setup Environment
-
-```bash
+3️⃣ Create Environment File
 cp .env.example .env
-```
 
-Update `.env` with:
 
-```
-DB_DATABASE=inventory_db
+Update your database settings:
+
+DB_DATABASE=medventory_db
 DB_USERNAME=root
 DB_PASSWORD=
-```
 
-### 4. Generate App Key
-
-```bash
+4️⃣ Generate Application Key
 php artisan key:generate
-```
 
-### 5. Run Migrations
-
-```bash
+5️⃣ Run Database Migrations
 php artisan migrate
-```
 
-### 6. Link Storage
-
-```bash
+6️⃣ Link Storage
 php artisan storage:link
-```
 
-### 7. (Optional) Seed Database
-
-```bash
+7️⃣ (Optional) Seed Demo Data
 php artisan db:seed
-```
 
----
-
-## 🎨 Frontend (TailwindCSS)
+🎨 Frontend (TailwindCSS)
 
 Install and build assets:
 
-```bash
 npm install
 npm run dev
-```
 
----
-
-## 🔁 Useful Commands
-
-```bash
-php artisan serve        # Start the server
-npm run dev              # Compile frontend assets
-php artisan migrate:fresh --seed
+🔁 Useful Commands
+php artisan serve                   # Start the development server
+npm run dev                         # Build frontend assets
+php artisan migrate:fresh --seed    # Reset database with seeders
 php artisan storage:link
-```
 
----
+📧 Email Testing (Local)
 
-## 📧 Email Testing
+Use log mailer:
 
-For local development, use log channel:
-
-```
 MAIL_MAILER=log
-```
 
-📌 Emails will be stored in: `storage/logs/laravel.log`
 
----
+Emails appear here:
 
-## 🛠️ Recommended VS Code Extensions
+storage/logs/laravel.log
 
-* Laravel Extra Intellisense
-* Laravel Blade Snippets
-* Tailwind CSS IntelliSense
-* PHP Intelephense
-* DotENV
+🛠 Recommended VS Code Extensions
 
----
+Laravel Extra Intellisense
 
-## ✅ Final Setup Checklist
+Laravel Blade Snippets
 
-* [x] PHP ≥ 8.2
-* [x] Composer Installed
-* [x] Node.js + npm Installed
-* [x] MySQL + Database Created
-* [x] `.env` Configured
-* [x] Migrations Run
-* [x] Assets Compiled
-* [x] App Key Generated
+Tailwind CSS IntelliSense
 
----
+PHP Intelephense
 
-## 💡 Launch the App
+DotENV
 
-```bash
-php artisan serve
-```
+🧪 System Requirements
+Component	Minimum	Recommended
+OS	Windows 10 (64-bit)	Windows 11 (64-bit)
+CPU	Dual-core 2.0 GHz	Quad-core 2.5 GHz+
+RAM	4 GB	8 GB+
+Storage	10 GB free	20 GB+ SSD
+Internet	Required	Stable broadband
+🧰 Optional Development Tools
 
-Open in browser → [http://localhost:8000](http://localhost:8000)
+Postman – API Testing
 
----
+Docker Desktop – For Laravel Sail
 
-## 📌 System Requirements
+Laravel Debugbar / Telescope – Debugging
 
-| Component | Minimum             | Recommended         |
-| --------- | ------------------- | ------------------- |
-| OS        | Windows 10 (64-bit) | Windows 11 (64-bit) |
-| Processor | Dual-core 2.0 GHz   | Quad-core 2.5 GHz+  |
-| RAM       | 4 GB                | 8 GB+               |
-| Storage   | 10 GB free          | 20 GB+ SSD          |
-| Internet  | Required            | Stable broadband    |
+HeidiSQL / Workbench / phpMyAdmin – DB Management
 
----
+🤝 Contributing
 
-## 📌 Optional Tools
+Pull requests are welcome!
+For major changes, open an issue first to discuss your ideas.
 
-* **Postman** — API Testing
-* **Docker Desktop** — For Laravel Sail
-* **Laravel Debugbar / Telescope** — Debugging
-* **MySQL GUI** — HeidiSQL / Workbench / phpMyAdmin
+🔒 Security
 
----
+If you discover a security vulnerability, kindly email the project maintainer.
 
-## 🤝 Contributing
+📜 License
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
-
----
-
-## 🔒 Security Vulnerabilities
-
-If you discover a security vulnerability, please send an e-mail to the project maintainer.
-
----
-
-## 📜 License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
-
----
-
+This project is licensed under the MIT License.
