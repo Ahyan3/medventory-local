@@ -43,112 +43,175 @@ With Medventory, hospitals can ensure:
 
 ---
 
-📦 Prerequisites
+## 📦 Prerequisites
 
-Install the following first:
+Make sure to install these tools first:
 
-PHP ≥ 8.2 → https://windows.php.net/download/
+* **PHP** ≥ 8.2 → [Download](https://windows.php.net/download/)
+* **Composer** → [Download](https://getcomposer.org/Composer-Setup.exe)
+* **MySQL** (XAMPP or standalone) → [XAMPP](https://www.apachefriends.org/)
+* **Node.js (LTS)** → [Download](https://nodejs.org/)
+* **Git** (optional) → [Download](https://git-scm.com/download/win)
 
-Composer → https://getcomposer.org/Composer-Setup.exe
+---
 
-MySQL (XAMPP or standalone) → https://www.apachefriends.org/
+## ⚙️ Installation & Setup
 
-Node.js LTS → https://nodejs.org/
+### 1. Clone the Repository
 
-Git → https://git-scm.com/download/win
+```bash
+git clone https://github.com/your-username/inventory-management-system.git
+cd inventory-management-system
+```
 
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
-git clone https://github.com/your-username/medventory.git
-cd medventory
+### 2. Install PHP Dependencies
 
-2️⃣ Install Backend Dependencies
+```bash
 composer install
+```
 
-3️⃣ Create Environment File
+### 3. Setup Environment
+
+```bash
 cp .env.example .env
+```
 
+Update `.env` with:
 
-Update your database settings:
-
-DB_DATABASE=medventory_db
+```
+DB_DATABASE=inventory_db
 DB_USERNAME=root
 DB_PASSWORD=
+```
 
-4️⃣ Generate Application Key
+### 4. Generate App Key
+
+```bash
 php artisan key:generate
+```
 
-5️⃣ Run Database Migrations
+### 5. Run Migrations
+
+```bash
 php artisan migrate
+```
 
-6️⃣ Link Storage
+### 6. Link Storage
+
+```bash
 php artisan storage:link
+```
 
-7️⃣ (Optional) Seed Demo Data
+### 7. (Optional) Seed Database
+
+```bash
 php artisan db:seed
+```
 
-🎨 Frontend (TailwindCSS)
+---
+
+## 🎨 Frontend (TailwindCSS)
 
 Install and build assets:
 
+```bash
 npm install
 npm run dev
+```
 
-🔁 Useful Commands
-php artisan serve                   # Start the development server
-npm run dev                         # Build frontend assets
-php artisan migrate:fresh --seed    # Reset database with seeders
+---
+
+## 🔁 Useful Commands
+
+```bash
+php artisan serve        # Start the server
+npm run dev              # Compile frontend assets
+php artisan migrate:fresh --seed
 php artisan storage:link
+```
 
-📧 Email Testing (Local)
+---
 
-Use log mailer:
+## 📧 Email Testing
 
+For local development, use log channel:
+
+```
 MAIL_MAILER=log
+```
 
+📌 Emails will be stored in: `storage/logs/laravel.log`
 
-Emails appear here:
+---
 
-storage/logs/laravel.log
+## 🛠️ Recommended VS Code Extensions
 
-🛠 Recommended VS Code Extensions
+* Laravel Extra Intellisense
+* Laravel Blade Snippets
+* Tailwind CSS IntelliSense
+* PHP Intelephense
+* DotENV
 
-Laravel Extra Intellisense
+---
 
-Laravel Blade Snippets
+## ✅ Final Setup Checklist
 
-Tailwind CSS IntelliSense
+* [x] PHP ≥ 8.2
+* [x] Composer Installed
+* [x] Node.js + npm Installed
+* [x] MySQL + Database Created
+* [x] `.env` Configured
+* [x] Migrations Run
+* [x] Assets Compiled
+* [x] App Key Generated
 
-PHP Intelephense
+---
 
-DotENV
+## 💡 Launch the App
 
-🧪 System Requirements
-Component	Minimum	Recommended
-OS	Windows 10 (64-bit)	Windows 11 (64-bit)
-CPU	Dual-core 2.0 GHz	Quad-core 2.5 GHz+
-RAM	4 GB	8 GB+
-Storage	10 GB free	20 GB+ SSD
-Internet	Required	Stable broadband
-🧰 Optional Development Tools
+```bash
+php artisan serve
+```
 
-Postman – API Testing
+Open in browser → [http://localhost:8000](http://localhost:8000)
 
-Docker Desktop – For Laravel Sail
+---
 
-Laravel Debugbar / Telescope – Debugging
+## 📌 System Requirements
 
-HeidiSQL / Workbench / phpMyAdmin – DB Management
+| Component | Minimum             | Recommended         |
+| --------- | ------------------- | ------------------- |
+| OS        | Windows 10 (64-bit) | Windows 11 (64-bit) |
+| Processor | Dual-core 2.0 GHz   | Quad-core 2.5 GHz+  |
+| RAM       | 4 GB                | 8 GB+               |
+| Storage   | 10 GB free          | 20 GB+ SSD          |
+| Internet  | Required            | Stable broadband    |
 
-🤝 Contributing
+---
 
-Pull requests are welcome!
-For major changes, open an issue first to discuss your ideas.
+## 📌 Optional Tools
 
-🔒 Security
+* **Postman** — API Testing
+* **Docker Desktop** — For Laravel Sail
+* **Laravel Debugbar / Telescope** — Debugging
+* **MySQL GUI** — HeidiSQL / Workbench / phpMyAdmin
 
-If you discover a security vulnerability, kindly email the project maintainer.
+---
 
-📜 License
+## 🤝 Contributing
 
-This project is licensed under the MIT License.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
+
+---
+
+## 🔒 Security Vulnerabilities
+
+If you discover a security vulnerability, please send an e-mail to the project maintainer.
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+---
