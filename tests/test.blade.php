@@ -658,9 +658,8 @@
                                 </div>
                             </div>
                             <div class="relative group">
-                                <label for="pr_number" class="block text-[0.65rem] font-medium text-[#00553d] mb-1">PR
-                                    Number *</label>
-                                <input type="text" name="pr_number" id="pr_number" required
+                                <label for="quantity" class="block text-[0.65rem] font-medium text-[#00553d] mb-1">Quantity *</label>
+                                <input type="text" name="quantity" id="quantity" required
                                     class="w-full px-3 py-2 border border-[#ffcc34] rounded-lg focus:ring-2 focus:ring-[#00553d] text-xs group-hover:shadow-md transition-all duration-300">
                                 <div
                                     class="absolute right-3 top-7 text-gray-400 group-hover:text-[#00553d] transition-colors">
@@ -1001,7 +1000,7 @@
                                             Serial Number</th>
                                         <th scope="col"
                                             class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[150px]">
-                                            PR Number</th>
+                                            Quantity</th>
                                         <th scope="col"
                                             class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[150px]">
                                             Date Issued</th>
@@ -1048,7 +1047,7 @@
                                                     {{ $item->serial_number }}</td>
                                                 <td
                                                     class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[150px]">
-                                                    {{ $item->pr_number }}</td>
+                                                    {{ $item->quantity }}</td>
                                                 <td
                                                     class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[150px]">
                                                     @if ($item->date_issued instanceof \Carbon\Carbon)
@@ -1233,9 +1232,9 @@
                                 </div>
                             </div>
                             <div class="relative group">
-                                <label for="edit_pr_number"
-                                    class="block text-[0.65rem] font-medium text-[#00553d] mb-1">PR Number *</label>
-                                <input type="text" name="pr_number" id="edit_pr_number" required
+                                <label for="edit_quantity"
+                                    class="block text-[0.65rem] font-medium text-[#00553d] mb-1">Quantity *</label>
+                                <input type="text" name="quantity" id="edit_quantity" required
                                     class="w-full px-3 py-2 border border-[#ffcc34] rounded-lg text-xs focus:ring-2 focus:ring-[#00553d] group-hover:shadow-md transition-all duration-300">
                                 <div
                                     class="absolute right-3 top-7 text-gray-400 group-hover:text-[#00553d] transition-colors">
@@ -1858,8 +1857,8 @@
                             const payload = Object.fromEntries(formData.entries());
                             const submitButton = this.querySelector('button[type="submit"]');
 
-                            if (!payload.serial_number || !payload.pr_number) {
-                                showAlert('Serial number and PR number are required.', 'error');
+                            if (!payload.serial_number || !payload.quantity) {
+                                showAlert('Serial number and Quantity are required.', 'error');
                                 return;
                             }
 
@@ -1875,7 +1874,7 @@
                                     },
                                     body: JSON.stringify({
                                         serial_number: payload.serial_number,
-                                        pr_number: payload.pr_number
+                                        quantity: payload.quantity
                                     })
                                 });
 
@@ -1883,12 +1882,12 @@
                                     `HTTP error! Status: ${checkResponse.status}`);
 
                                 const checkData = await checkResponse.json();
-                                if (checkData.serial_exists || checkData.pr_exists) {
+                                if (checkData.serial_exists || checkData.quantity_exists) {
                                     let message = 'Potential duplicates found:<br>';
                                     if (checkData.serial_exists) message +=
                                         `• Serial Number "${payload.serial_number}" exists<br>`;
-                                    if (checkData.pr_exists) message +=
-                                        `• PR Number "${payload.pr_number}" exists<br>`;
+                                    if (checkData.quantity_exists) message +=
+                                        `• Quantity "${payload.quantity}" exists<br>`;
 
                                     const result = await Swal.fire({
                                         title: 'Duplicate Detected',
@@ -1938,8 +1937,8 @@
                                                     <span class="font-medium">${payload.serial_number}</span>
                                                 </div>
                                                 <div class="flex justify-between items-center mt-1">
-                                                    <span>PR Number:</span>
-                                                    <span class="font-medium">${payload.pr_number}</span>
+                                                    <span>Quantity:</span>
+                                                    <span class="font-medium">${payload.quantity}</span>
                                                 </div>
                                                 <div class="flex justify-between items-center mt-1">
                                                     <span>Status:</span>
@@ -2067,7 +2066,7 @@
                                 setValueIfExists('edit_equipment_name', item.equipment_name);
                                 setValueIfExists('edit_model_brand', item.model_brand);
                                 setValueIfExists('edit_serial_number', item.serial_number);
-                                setValueIfExists('edit_pr_number', item.pr_number);
+                                setValueIfExists('edit_quantity', item.quantity);
                                 setValueIfExists('edit_date_issued', item.date_issued);
                                 setValueIfExists('edit_status', item.status);
 
@@ -2102,7 +2101,7 @@
                                     },
                                     body: JSON.stringify({
                                         serial_number: payload.serial_number,
-                                        pr_number: payload.pr_number,
+                                        quantity: payload.quantity,
                                         exclude_id: editForm.action.split('/').pop()
                                     })
                                 });
@@ -2111,12 +2110,12 @@
                                     `HTTP error! Status: ${checkResponse.status}`);
 
                                 const checkData = await checkResponse.json();
-                                if (checkData.serial_exists || checkData.pr_exists) {
+                                if (checkData.serial_exists || checkData.quantity_exists) {
                                     let message = 'Potential duplicates found:<br>';
                                     if (checkData.serial_exists) message +=
                                         `• Serial Number "${payload.serial_number}" exists<br>`;
-                                    if (checkData.pr_exists) message +=
-                                        `• PR Number "${payload.pr_number}" exists<br>`;
+                                    if (checkData.quantity_exists) message +=
+                                        `• Quantity "${payload.quantity}" exists<br>`;
 
                                     const result = await Swal.fire({
                                         title: 'Duplicate Detected',
@@ -2166,8 +2165,8 @@
                                                     <span class="font-medium">${payload.serial_number}</span>
                                                 </div>
                                                 <div class="flex justify-between items-center mt-1">
-                                                    <span>PR Number:</span>
-                                                    <span class="font-medium">${payload.pr_number}</span>
+                                                    <span>Quantity:</span>
+                                                    <span class="font-medium">${payload.quantity}</span>
                                                 </div>
                                                 <div class="flex justify-between items-center mt-1">
                                                     <span>Status:</span>

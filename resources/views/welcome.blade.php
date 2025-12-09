@@ -27,10 +27,10 @@
                            class="bg-gray-600 hover:bg-gray-900 text-white text-sm py-2 px-6 rounded-lg transition duration-200">
                             Login
                         </a>
-                        <a href="{{ route('register') }}"
+                        {{--  <a href="{{ route('register') }}"
                            class="bg-gray-600 hover:bg-gray-900 text-white text-sm py-2 px-6 rounded-lg transition duration-200">
                             Register
-                        </a>
+                        </a>  --}}
                     </div>
                 @endauth
             </div>

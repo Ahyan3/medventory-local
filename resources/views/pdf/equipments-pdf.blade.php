@@ -234,7 +234,7 @@
                 <th class="col-model">Model/Brand</th>
                 <th class="col-date">Date Issued</th>
                 <th class="col-serial">Serial Number</th>
-                <th class="col-pr">PR Number</th>
+                <th class="col-pr">Quantity</th>
                 <th class="col-status">Status</th>
                 <th class="col-condition">Return Condition</th>
                 <th class="col-remarks">Remarks</th>
@@ -253,7 +253,7 @@
                     {{ $item->date_issued instanceof \Carbon\Carbon ? $item->date_issued->format('M d, Y g:i A') : ($item->date_issued ?? 'N/A') }}
                 </td>
                 <td class="text-center">{{ $item->serial_number }}</td>
-                <td class="text-center">{{ $item->pr_number }}</td>
+                <td class="text-center">{{ $item->quantity }}</td>
                 <td class="text-center">
                     @php
                         $status = strtolower($item->status ?? 'active');

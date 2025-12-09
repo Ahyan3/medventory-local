@@ -154,8 +154,8 @@
             <span class="info-value">{{ $equipment->serial_number ?? 'N/A' }}</span>
         </div>
         <div class="info-row">
-            <span class="info-label">PR Number:</span>
-            <span class="info-value">{{ $equipment->pr_number ?? 'N/A' }}</span>
+            <span class="info-label">Quantity:</span>
+            <span class="info-value">{{ $equipment->quantity ?? 'N/A' }}</span>
         </div>
         <div class="info-row">
             <span class="info-label">Current Status:</span>

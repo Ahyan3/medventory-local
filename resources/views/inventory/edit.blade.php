@@ -45,8 +45,8 @@
                             <input type="text" name="serial_number" id="serial_number" value="{{ old('serial_number', $equipment->serial_number) }}" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-xs">
                         </div>
                         <div>
-                            <label for="pr_number" class="block text-xs font-medium text-gray-700 mb-1">PR Number *</label>
-                            <input type="text" name="pr_number" id="pr_number" value="{{ old('pr_number', $equipment->pr_number) }}" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-xs">
+                            <label for="quantity" class="block text-xs font-medium text-gray-700 mb-1">Quantity *</label>
+                            <input type="text" name="quantity" id="quantity" value="{{ old('quantity', $equipment->quantity) }}" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 text-xs">
                         </div>
                         <div>
                             <label for="remarks" class="block text-xs font-medium text-gray-700 mb-1">Remarks</label>

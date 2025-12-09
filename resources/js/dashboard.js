@@ -176,7 +176,7 @@ document.querySelectorAll('.edit-inventory-btn').forEach(btn => {
             document.getElementById('edit_equipment_name').value = item.equipment_name || '';
             document.getElementById('edit_model_brand').value = item.model_brand || '';
             document.getElementById('edit_serial_number').value = item.serial_number || '';
-            document.getElementById('edit_pr_number').value = item.pr_number || '';
+            document.getElementById('edit_quantity').value = item.quantity || '';
             document.getElementById('edit_date_issued').value = item.date_issued || '';
             document.getElementById('edit_inventory_status').value = String(item.status || '');
             document.getElementById('edit-inventory-modal').classList.remove('hidden');

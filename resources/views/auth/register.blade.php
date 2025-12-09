@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{--  <x-guest-layout>
     <!-- Header Section -->
     <x-auth-header />
 
@@ -51,4 +51,4 @@
 
     <!-- Footer Section -->
     <x-auth-footer />
-</x-guest-layout>
+</x-guest-layout>  --}}

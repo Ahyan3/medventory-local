@@ -501,30 +501,30 @@
                                         <i class="fas fa-copy text-white text-xs"></i>
                                     </div>
                                     <div>
-                                        <span>Duplicate PR Numbers</span>
-                                        <div class="text-[0.6rem] font-normal text-gray-500 mt-1">Control PR number
+                                        <span>Duplicate Serial Number</span>
+                                        <div class="text-[0.6rem] font-normal text-gray-500 mt-1">Control Serial Number
                                             uniqueness validation</div>
                                     </div>
                                 </label>
                                 <div
                                     class="flex items-center space-x-3 p-4 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-[#ffcc34] opacity-70 cursor-not-allowed hover:shadow-none transition-all duration-300">
                                     <div class="relative">
-                                        <input type="checkbox" name="allow_duplicate_pr" id="allow_duplicate_pr"
+                                        <input type="checkbox" name="allow_duplicate_sn" id="allow_duplicate_sn"
                                             value="1" disabled
-                                            {{ old('allow_duplicate_pr', $settings['allow_duplicate_pr'] ?? 0) == 1 ? 'checked' : '' }}
+                                            {{ old('allow_duplicate_sn', $settings['allow_duplicate_sn'] ?? 0) == 1 ? 'checked' : '' }}
                                             class="h-4 w-4 text-[#00553d] focus:ring-[#00553d] border-[#ffcc34] rounded transition-colors cursor-not-allowed">
                                     </div>
-                                    <label for="allow_duplicate_pr"
+                                    <label for="allow_duplicate_sn"
                                         class="text-xs text-[#00553d] flex-1 cursor-not-allowed select-none">
-                                        <span class="font-medium">Allow duplicate PR numbers in equipment
+                                        <span class="font-medium">Allow duplicate Serial Number in equipment
                                             records</span>
                                         <div class="text-[0.6rem] text-gray-600 mt-1">Enable this if your organization
-                                            uses non-unique PR numbering systems</div>
+                                            uses non-unique Serial Number numbering systems</div>
                                     </label>
                                     <div class="text-right">
                                         <span
-                                            class="text-[0.6rem] px-1.5 py-0.5 rounded-full {{ old('allow_duplicate_pr', $settings['allow_duplicate_pr'] ?? 0) == 1 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
-                                            {{ old('allow_duplicate_pr', $settings['allow_duplicate_pr'] ?? 0) == 1 ? 'Enabled' : 'Disabled' }}
+                                            class="text-[0.6rem] px-1.5 py-0.5 rounded-full {{ old('allow_duplicate_sn', $settings['allow_duplicate_sn'] ?? 0) == 1 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
+                                            {{ old('allow_duplicate_sn', $settings['allow_duplicate_sn'] ?? 0) == 1 ? 'Enabled' : 'Disabled' }}
                                         </span>
                                     </div>
                                 </div>
@@ -534,7 +534,7 @@
                                     <i class="fas fa-exclamation-triangle text-amber-500 mt-0.5 text-xs"></i>
                                     <div class="text-[0.6rem] text-amber-700">
                                         <strong>Warning:</strong>
-                                        {{ $settingsDetails['allow_duplicate_pr']->description ?? 'Enabling this may cause data integrity issues. Use with caution.' }}
+                                        {{ $settingsDetails['allow_duplicate_sn']->description ?? 'Enabling this may cause data integrity issues. Use with caution.' }}
                                     </div>
                                 </div>
                             </div>
@@ -664,7 +664,7 @@
                 settingsForm.addEventListener('submit', function(e) {
                     e.preventDefault();
                     const returnPeriod = document.getElementById('default_return_period').value;
-                    const allowDuplicate = document.getElementById('allow_duplicate_pr').checked;
+                    const allowDuplicate = document.getElementById('allow_duplicate_sn').checked;
                     if (!returnPeriod || returnPeriod < 1 || returnPeriod > 365) {
                         showAlert('Return period must be between 1 and 365 days', 'error');
                         return;
@@ -681,7 +681,7 @@
                                             <span class="font-medium">${returnPeriod} days</span>
                                         </div>
                                         <div class="flex justify-between">
-                                            <span>Duplicate PR:</span>
+                                            <span>Duplicate SN:</span>
                                             <span class="font-medium ${allowDuplicate ? 'text-green-600' : 'text-red-600'}">
                                                 ${allowDuplicate ? 'Allowed' : 'Restricted'}
                                             </span>

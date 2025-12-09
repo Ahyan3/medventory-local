@@ -18,7 +18,7 @@ class Equipment extends Model
         'equipment',
         'model_brand',
         'serial_number',
-        'pr_number',
+        'quantity',
         'date_issued',
         'status',
         'remarks',
@@ -63,7 +63,7 @@ class Equipment extends Model
                     ->orWhere('equipment_name', 'like', "%{$search}%")
                     ->orWhere('model_brand', 'like', "%{$search}%")
                     ->orWhere('serial_number', 'like', "%{$search}%")
-                    ->orWhere('pr_number', 'like', "%{$search}%");
+                    ->orWhere('quantity', 'like', "%{$search}%");
             });
             return $query;
         }

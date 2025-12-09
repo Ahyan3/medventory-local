@@ -53,7 +53,7 @@ class InventoryController extends Controller
                 $query->where(function ($q) use ($search) {
                     $q->where('equipment_name', 'like', "%{$search}%")
                         ->orWhere('serial_number', 'like', "%{$search}%")
-                        ->orWhere('pr_number', 'like', "%{$search}%")
+                        ->orWhere('quantity', 'like', "%{$search}%")
                         ->orWhereHas('issuances.staff', function ($q) use ($search) {
                             $q->where('name', 'like', "%{$search}%");
                         });
@@ -171,7 +171,7 @@ class InventoryController extends Controller
             'model_brand' => 'required|string|max:255',
             'serial_number' => 'required|string|max:255|unique:equipment,serial_number',
             'date_issued' => 'required|date',
-            'pr_number' => 'required|string|max:255',
+            'quantity' => 'required|integer|min:1',
             'status' => 'required|string|in:available,in_use,maintenance,damaged,condemned',
             'remarks' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -226,7 +226,7 @@ class InventoryController extends Controller
                 'model_brand' => $validated['model_brand'],
                 'status' => $validated['status'],
                 'date_issued' => $validated['date_issued'],
-                'pr_number' => $validated['pr_number'],
+                'quantity' => $validated['quantity'],
                 'remarks' => $validated['remarks'],
             ];
 
@@ -247,14 +247,14 @@ class InventoryController extends Controller
                     'equipment_id' => $equipment->id,
                     'issued_at' => $validated['date_issued'],
                     'expected_return_at' => now()->addDays($defaultReturnPeriod),
-                    'notes' => ($validated['remarks'] ?? '') . ($validated['pr_number'] ? " (PR: {$validated['pr_number']})" : ''),
+                    'notes' => ($validated['remarks'] ?? '') . ($validated['quantity'] ? " (Quantity: {$validated['quantity']})" : ''),
                     'status' => 'in_use',
                 ]);
                 Log::info('Issuance created', ['issuance_id' => $issuance->id]);
             }
 
             // Update history log description to include image if uploaded
-            $logDescription = "Issued equipment: {$equipment->equipment_name} to registered staff {$staff->name} (Department: {$staff->department}), PR: {$validated['pr_number']}, Serial: {$equipment->serial_number}";
+            $logDescription = "Issued equipment: {$equipment->equipment_name} to registered staff {$staff->name} (Department: {$staff->department}), Quantity: {$validated['quantity']}, Serial: {$equipment->serial_number}";
             if (isset($equipmentData['image_path'])) {
                 $logDescription .= ", Image uploaded: {$equipmentData['image_path']}";
             }
@@ -417,7 +417,7 @@ class InventoryController extends Controller
                 'staff_id' => $issuance->staff_id,
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
-                'description' => "Returned equipment: {$equipment->equipment_name}, PR: {$equipment->pr_number}, Serial: {$equipment->serial_number}",
+                'description' => "Returned equipment: {$equipment->equipment_name}, Quantity: {$equipment->quantity}, Serial: {$equipment->serial_number}",
             ]);
             Log::info('History log created for return', ['issuance_id' => $issuance->id]);
 
@@ -488,16 +488,15 @@ class InventoryController extends Controller
         try {
             $request->validate([
                 'serial_number' => 'required|string',
-                'pr_number' => 'required|string'
+                'quantity' => 'required|integer|min:1'
             ]);
 
             $serialExists = Equipment::where('serial_number', $request->serial_number)->exists();
-            $prExists = Equipment::where('pr_number', $request->pr_number)->exists();
-
+            $quantityExists = Equipment::where('quantity', $request->quantity)->exists();
             return response()->json([
                 'serial_exists' => $serialExists,
-                'pr_exists' => $prExists,
-                'message' => $serialExists ? 'Serial number already exists' : ($prExists ? 'PR number already exists' : 'No duplicates found')
+                'quantity_exists' => $quantityExists,
+                'message' => $serialExists ? 'Serial number already exists' : ($quantityExists ? 'Quantity already exists' : 'No duplicates found')
             ]);
         } catch (\Exception $e) {
             Log::error('Duplicate check failed: ' . $e->getMessage());
@@ -529,7 +528,7 @@ class InventoryController extends Controller
                     'equipment_name' => $equipment->equipment_name,
                     'model_brand' => $equipment->model_brand,
                     'serial_number' => $equipment->serial_number,
-                    'pr_number' => $equipment->pr_number,
+                    'quantity' => $equipment->quantity,
                     'date_issued' => $equipment->date_issued ? $equipment->date_issued->format('Y-m-d H:i:s') : null,
                     'status' => $equipment->status,
                     'staff_name' => $equipment->staff_name,
@@ -574,7 +573,7 @@ class InventoryController extends Controller
             'model_brand' => 'required|string|max:255',
             'serial_number' => 'required|string|max:255|unique:equipment,serial_number,' . $equipment->id,
             'date_issued' => 'nullable|date_format:Y-m-d\TH:i',
-            'pr_number' => 'required|string|max:255',
+            'quantity' => 'required|integer|min:1',
             'status' => 'required|string|in:available,in_use,maintenance,damaged,condemned',
             'remarks' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:20048', 
@@ -654,7 +653,7 @@ class InventoryController extends Controller
                 'staff_id' => $staff->id,
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
-                'description' => "Updated equipment: {$equipment->equipment_name} for {$staff->name} ({$staff->department}), PR: {$validated['pr_number']}, Serial: {$equipment->serial_number}",
+                'description' => "Updated equipment: {$equipment->equipment_name} for {$staff->name} ({$staff->department}), Quantity: {$validated['quantity']}, Serial: {$equipment->serial_number}",
             ]);
 
             DB::commit();
@@ -682,7 +681,7 @@ class InventoryController extends Controller
             'model_brand' => 'required|string|max:255',
             'serial_number' => 'required|string|max:255|unique:equipment,serial_number,' . $equipment->id,
             'date_issued' => 'required|date',
-            'pr_number' => 'required|string|max:255',
+            'quantity' => 'required|integer|min:1',
             'status' => 'required|string|in:available,in_use,maintenance,damaged,condemned',
             'remarks' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -751,7 +750,7 @@ class InventoryController extends Controller
                 'staff_id' => $staff->id,
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
-                'description' => "Updated equipment: {$equipment->equipment_name} for {$staff->name} ({$staff->department}), PR: {$validated['pr_number']}, Serial: {$equipment->serial_number}",
+                'description' => "Updated equipment: {$equipment->equipment_name} for {$staff->name} ({$staff->department}), Quantity: {$validated['quantity']}, Serial: {$equipment->serial_number}",
             ]);
             Log::info('History log created for update', ['equipment_id' => $equipment->id]);
 
@@ -792,7 +791,7 @@ class InventoryController extends Controller
                     <div><strong>Equipment Name:</strong> ' . e($equipment->equipment_name) . '</div>
                     <div><strong>Model/Brand:</strong> ' . e($equipment->model_brand) . '</div>
                     <div><strong>Serial Number:</strong> ' . e($equipment->serial_number) . '</div>
-                    <div><strong>PR Number:</strong> ' . e($equipment->pr_number) . '</div>
+                    <div><strong>Quantity:</strong> ' . e($equipment->quantity) . '</div>
                     <div><strong>Date Issued:</strong> ' . $equipment->date_issued->format('F d, Y') . '</div>
                     <div><strong>Status:</strong> 
                         <span class="inline-block px-2 py-1 rounded text-white text-xs ' . $this->statusColor($equipment->status) . '">' .
@@ -953,7 +952,7 @@ class InventoryController extends Controller
 
             $callback = function () use ($equipment) {
                 $file = fopen('php://output', 'w');
-                fputcsv($file, ['Staff ID','Equipment Name', 'Staff Name', 'Department', 'Model/Brand', 'Date Issued', 'Serial Number', 'PR Number', 'Status', 'Returned Condition', 'Remarks']);
+                fputcsv($file, ['Staff ID','Equipment Name', 'Staff Name', 'Department', 'Model/Brand', 'Date Issued', 'Serial Number', 'Quantity', 'Status', 'Returned Condition', 'Remarks']);
 
                 foreach ($equipment as $item) {
                     fputcsv($file, [
@@ -964,7 +963,7 @@ class InventoryController extends Controller
                         $item->model_brand,
                         $item->date_issued instanceof \Carbon\Carbon ? $item->date_issued->format('Y-m-d H:i:s') : ($item->date_issued ?? 'N/A'),
                         $item->serial_number,
-                        $item->pr_number,
+                        $item->quantity,
                         ucfirst(str_replace('_', ' ', $item->status)),
                         $item->returned_condition ?? 'N/A',
                         $item->remarks ?? 'N/A',
@@ -1052,7 +1051,7 @@ class InventoryController extends Controller
                                 'equipment_name',
                                 'model_brand',
                                 'serial_number',
-                                'pr_number',
+                                'quantity',
                                 'status',
                                 'returned_condition',
                                 'location',

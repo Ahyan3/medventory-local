@@ -24,7 +24,7 @@ class SettingsController extends Controller
         $request->validate([
             'system_title' => 'required|string|max:255',
             'default_return_period' => 'required|integer|min:1',
-            'allow_duplicate_pr' => 'sometimes|boolean',
+            'allow_duplicate_quantity' => 'sometimes|boolean', //d gumagana ata
         ]);
 
         try {
@@ -55,13 +55,13 @@ class SettingsController extends Controller
                 ]
             );
 
-            // Update allow_duplicate_pr
+            // Update allow_duplicate_sn
             Settings::updateOrCreate(
-                ['key' => 'allow_duplicate_pr'],
+                ['key' => 'allow_duplicate_serial_number'],
                 [
-                    'value' => $request->has('allow_duplicate_pr') ? '1' : '0',
+                    'value' => $request->has('allow_duplicate_serial_number') ? '1' : '0',
                     'type' => 'boolean',
-                    'description' => 'Allow duplicate PR numbers in equipment records.'
+                    'description' => 'Allow duplicate Serial Numbers in equipment records.'
                 ]
             );
 

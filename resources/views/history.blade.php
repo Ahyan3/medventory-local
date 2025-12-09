@@ -517,7 +517,7 @@
                                             Serial No.</th>
                                         <th scope="col"
                                             class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[100px]">
-                                            PR No.</th>
+                                            Quantity</th>
                                         <th scope="col"
                                             class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[100px]">
                                             Date Issued</th>
@@ -561,7 +561,7 @@
                                                     {{ $item->serial_number }}</td>
                                                 <td
                                                     class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[100px]">
-                                                    {{ $item->pr_number }}</td>
+                                                    {{ $item->quantity }}</td>
                                                 <td
                                                     class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[100px]">
                                                     @if ($item->date_issued instanceof \Carbon\Carbon)

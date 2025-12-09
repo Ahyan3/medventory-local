@@ -14,7 +14,7 @@ return new class extends Migration
             $table->foreignId('department_id')->nullable()->constrained('departments')->onDelete('set null');
             $table->string('model_brand')->nullable();
             $table->string('serial_number')->unique();
-            $table->string('pr_number')->unique();
+            $table->string('quantity');
             $table->date('date_issued')->nullable();
             $table->enum('status', ['available', 'in_use', 'maintenance', 'damaged'])->default('available');
             $table->string('remarks');

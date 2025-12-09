@@ -72,9 +72,9 @@
                         <a href="{{ route('login') }}" class="block px-3 py-2 text-xs text-gray-700 hover:bg-[#6b102c] hover:text-white" aria-label="Login">
                             <i class="fas fa-sign-in-alt mr-1.5"></i> Login
                         </a>
-                        <a href="{{ route('register') }}" class="block px-3 py-2 text-xs text-gray-700 hover:bg-[#6b102c] hover:text-white" aria-label="Register">
+                        {{--  <a href="{{ route('register') }}" class="block px-3 py-2 text-xs text-gray-700 hover:bg-[#6b102c] hover:text-white" aria-label="Register">
                             <i class="fas fa-user-plus mr-1.5"></i> Register
-                        </a>
+                        </a>  --}}
                         @endauth
                     </div>
                 </div>

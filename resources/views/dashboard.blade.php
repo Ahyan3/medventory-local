@@ -472,7 +472,7 @@
                                                 Serial No.</th>
                                             <th
                                                 class="px-4 py-2 text-left text-[0.65rem] font-medium text-[#00553d] uppercase">
-                                                PR No.</th>
+                                                Quantity </th>
                                             <th
                                                 class="px-4 py-2 text-left text-[0.65rem] font-medium text-[#00553d] uppercase">
                                                 Date Issued</th>
@@ -500,7 +500,7 @@
                                                 </td>
                                                 <td class="px-4 py-2 text-xs text-[#00553d]">
                                                     {{ $item->serial_number }}</td>
-                                                <td class="px-4 py-2 text-xs text-[#00553d]">{{ $item->pr_number }}
+                                                <td class="px-4 py-2 text-xs text-[#00553d]">{{ $item->quantity }}
                                                 </td>
                                                 <td class="px-4 py-2 text-xs text-[#00553d]">
                                                     @if ($item->date_issued instanceof \Carbon\Carbon)

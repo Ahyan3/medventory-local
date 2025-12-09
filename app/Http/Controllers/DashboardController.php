@@ -141,7 +141,7 @@ class DashboardController extends Controller
             $issuances = Issuance::with(['staff', 'equipment.department'])->latest()->get();
             $filename = 'issuances_' . now()->format('Y-m-d_His') . '.csv';
             $handle = fopen('php://output', 'w');
-            fputcsv($handle, ['Staff Name', 'Department', 'Equipment', 'Model/Brand', 'Serial No.', 'PR No.', 'Date Issued', 'Status']);
+            fputcsv($handle, ['Staff Name', 'Department', 'Equipment', 'Model/Brand', 'Serial No.', 'Quantity', 'Date Issued', 'Status']);
 
             foreach ($issuances as $issuance) {
                 fputcsv($handle, [
@@ -150,7 +150,7 @@ class DashboardController extends Controller
                     $issuance->equipment->equipment_name ?? 'N/A',
                     $issuance->equipment->model_brand ?? 'N/A',
                     $issuance->equipment->serial_number ?? 'N/A',
-                    $issuance->equipment->pr_number ?? 'N/A',
+                    $issuance->equipment->quantity ?? 'N/A',
                     $issuance->issued_at->format('Y-m-d'),
                     ucfirst($issuance->status),
                 ]);

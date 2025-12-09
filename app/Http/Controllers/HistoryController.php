@@ -273,7 +273,7 @@ class HistoryController extends Controller
 
         $callback = function () use ($items) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, ['Staff Name', 'Department', 'Equipment', 'Model/Brand', 'Serial No.', 'PR No.', 'Date Issued', 'Status']);
+            fputcsv($file, ['Staff Name', 'Department', 'Equipment', 'Model/Brand', 'Serial No.', 'Quantity', 'Date Issued', 'Status']);
 
             foreach ($items as $item) {
                 fputcsv($file, [
@@ -282,7 +282,7 @@ class HistoryController extends Controller
                     $item->equipment_name,
                     $item->model_brand ?? 'N/A',
                     $item->serial_number,
-                    $item->pr_number,
+                    $item->quantity,
                     $item->date_issued instanceof \Carbon\Carbon ? $item->date_issued->format('Y-m-d H:i:s') : ($item->date_issued && \Carbon\Carbon::canBeCreatedFromFormat($item->date_issued, 'Y-m-d H:i:s') ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $item->date_issued)->format('Y-m-d H:i:s') : 'N/A'),
                     ucfirst(str_replace('_', ' ', $item->status)),
                 ]);

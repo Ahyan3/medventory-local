@@ -53,14 +53,14 @@ class SettingsController extends Controller
             $settings = array_merge([
                 'system_title' => config('app.name', 'Medventory: Medical Equipment Inventory System'),
                 'default_return_period' => 30,
-                'allow_duplicate_pr' => 0,
+                'allow_duplicate_sn' => 0,
             ], $settings);
 
             // Retrieve settings descriptions
             $settingsDetails = [
                 'system_title' => (object) ['description' => Settings::where('key', 'system_title')->first()->description ?? 'The title displayed in the application header and browser tab'],
                 'default_return_period' => (object) ['description' => Settings::where('key', 'default_return_period')->first()->description ?? 'Set between 7-365 days based on your equipment usage patterns'],
-                'allow_duplicate_pr' => (object) ['description' => Settings::where('key', 'allow_duplicate_pr')->first()->description ?? 'Enabling this may cause data integrity issues. Use with caution.'],
+                'allow_duplicate_sn' => (object) ['description' => Settings::where('key', 'allow_duplicate_sn')->first()->description ?? 'Enabling this may cause data integrity issues. Use with caution.'],
             ];
 
             return view('settings', [
@@ -83,14 +83,14 @@ class SettingsController extends Controller
         $validated = $request->validate([
             'system_title' => 'required|string|max:255',
             'default_return_period' => 'required|integer|min:1|max:365',
-            'allow_duplicate_pr' => 'boolean',
+            'allow_duplicate_sn' => 'boolean',
         ]);
 
         try {
             // Update settings in the database
             Settings::set('system_title', $validated['system_title'], 'string', 'The title displayed in the application header and browser tab');
             Settings::set('default_return_period', $validated['default_return_period'], 'integer', 'Set between 7-365 days based on your equipment usage patterns');
-            Settings::set('allow_duplicate_pr', $validated['allow_duplicate_pr'], 'boolean', 'Enabling this may cause data integrity issues. Use with caution.');
+            Settings::set('allow_duplicate_sn', $validated['allow_duplicate_sn'], 'boolean', 'Enabling this may cause data integrity issues. Use with caution.');
 
             // Clear cache to reflect updated settings
             Cache::forget('total_departments');

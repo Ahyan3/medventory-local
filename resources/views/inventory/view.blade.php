@@ -18,7 +18,7 @@
                     <p><strong>Model/Brand:</strong> {{ $equipment->model_brand }}</p>
                     <p><strong>Date Issued:</strong> {{ $equipment->date_issued }}</p>
                     <p><strong>Serial Number:</strong> {{ $equipment->serial_number }}</p>
-                    <p><strong>PR Number:</strong> {{ $equipment->pr_number }}</p>
+                    <p><strong>Quantity:</strong> {{ $equipment->quantity }}</p>
                     <p><strong>Status:</strong> {{ ucfirst($equipment->status) }}</p>
                     <p><strong>Remarks:</strong> {{ $equipment->remarks ?? 'N/A' }}</p>
                     <a href="{{ route('inventory') }}" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg">Back to Inventory</a>
