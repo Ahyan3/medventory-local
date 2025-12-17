@@ -483,29 +483,28 @@ class InventoryController extends Controller
         }
     }
 
-    public function checkDuplicates(Request $request)
-    {
-        try {
-            $request->validate([
-                'serial_number' => 'required|string',
-                'quantity' => 'required|integer|min:1'
-            ]);
+public function checkDuplicates(Request $request)
+{
+    try {
+        $request->validate([
+            'serial_number' => 'required|string',
+        ]);
 
-            $serialExists = Equipment::where('serial_number', $request->serial_number)->exists();
-            $quantityExists = Equipment::where('quantity', $request->quantity)->exists();
-            return response()->json([
-                'serial_exists' => $serialExists,
-                'quantity_exists' => $quantityExists,
-                'message' => $serialExists ? 'Serial number already exists' : ($quantityExists ? 'Quantity already exists' : 'No duplicates found')
-            ]);
-        } catch (\Exception $e) {
-            Log::error('Duplicate check failed: ' . $e->getMessage());
-            return response()->json([
-                'error' => 'Duplicate check failed',
-                'details' => $e->getMessage()
-            ], 500);
-        }
+        $serialExists = Equipment::where('serial_number', $request->serial_number)->exists();
+
+        return response()->json([
+            'serial_exists' => $serialExists,
+            'message' => $serialExists ? 'Serial number already exists' : 'Serial number is available'
+        ]);
+    } catch (\Exception $e) {
+        Log::error('Duplicate check failed: ' . $e->getMessage());
+        return response()->json([
+            'error' => 'Duplicate check failed',
+            'details' => $e->getMessage()
+        ], 500);
     }
+}
+
 
     public function view(Equipment $equipment)
     {

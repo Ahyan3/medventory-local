@@ -1070,28 +1070,28 @@
                                             class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[100px]">
                                             Image</th>
                                         <th scope="col"
-                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[200px]">
+                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[150px]">
                                             Equipment</th>
                                         <th scope="col"
-                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[200px]">
+                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[150px]">
                                             Staff Name</th>
                                         <th scope="col"
-                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[150px]">
+                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[120px]">
                                             Department</th>
                                         <th scope="col"
-                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[150px]">
+                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[100px]">
                                             Model/Brand</th>
                                         <th scope="col"
-                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[150px]">
+                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[100px]">
                                             Serial Number</th>
                                         <th scope="col"
-                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[150px]">
+                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[100px]">
                                             Quantity</th>
                                         <th scope="col"
-                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[150px]">
+                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[120px]">
                                             Date Issued</th>
                                         <th scope="col"
-                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[150px]">
+                                            class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[120px]">
                                             Status</th>
                                         <th scope="col"
                                             class="px-4 py-2 text-left text-xs font-medium text-[#00553d] uppercase tracking-wider min-w-[150px]">
@@ -1130,26 +1130,26 @@
                                                         <span class="text-gray-400 text-[0.6rem]">No Image</span>
                                                     @endif
                                                 </td>
-                                                <td class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[200px] truncate max-w-xs"
+                                                <td class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[150px] truncate max-w-xs"
                                                     title="{{ $item->equipment_name }}">{{ $item->equipment_name }}
                                                 </td>
-                                                <td class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[200px] truncate max-w-xs"
+                                                <td class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[150px] truncate max-w-xs"
                                                     title="{{ $item->staff_name ?? 'N/A' }}">
                                                     {{ $item->staff_name ?? 'N/A' }}</td>
                                                 <td
-                                                    class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[150px]">
+                                                    class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[120px]">
                                                     {{ $item->department->name ?? 'N/A' }}</td>
-                                                <td class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[150px] truncate max-w-xs"
+                                                <td class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[100px] truncate max-w-xs"
                                                     title="{{ $item->model_brand ?? 'N/A' }}">
                                                     {{ $item->model_brand ?? 'N/A' }}</td>
                                                 <td
-                                                    class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[150px]">
+                                                    class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[100px]">
                                                     {{ $item->serial_number }}</td>
                                                 <td
-                                                    class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[150px]">
+                                                    class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[100px]">
                                                     {{ $item->quantity }}</td>
                                                 <td
-                                                    class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[150px]">
+                                                    class="px-4 py-3 whitespace-nowrap text-xs text-black min-w-[120px]">
                                                     @if ($item->date_issued instanceof \Carbon\Carbon)
                                                         {{ $item->date_issued->format('Y-m-d H:i:s') }}
                                                     @elseif (is_string($item->date_issued) &&
@@ -1160,7 +1160,7 @@
                                                         N/A
                                                     @endif
                                                 </td>
-                                                <td class="px-4 py-3 whitespace-nowrap min-w-[150px]">
+                                                <td class="px-4 py-3 whitespace-nowrap min-w-[120px]">
                                                     <span class="status-indicator status-{{ $item->status }}"></span>
                                                     <span
                                                         class="px-2 py-1 inline-flex text-xs leading-5 font-bold rounded-full {{ $item->status == 'available' ? 'bg-green-100 text-green-800' : ($item->status == 'in_use' ? 'bg-blue-100 text-blue-800' : ($item->status == 'maintenance' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800')) }}">{{ ucfirst(str_replace('_', ' ', $item->status)) }}</span>
